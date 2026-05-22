@@ -2,12 +2,14 @@
 
 namespace Domain\Driver\Models\Entities;
 
+use Database\Factories\DriverFactory;
 use Domain\Driver\Enums\DriverStatus;
 use Domain\Order\Models\Entities\Order;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class Driver extends Model
 {
@@ -59,5 +61,10 @@ class Driver extends Model
     public function markAvailable(): void
     {
         $this->status = DriverStatus::AVAILABLE;
+    }
+
+    protected static function newFactory(): Factory
+    {
+        return DriverFactory::new();
     }
 }

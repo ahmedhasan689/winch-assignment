@@ -2,10 +2,12 @@
 
 namespace Domain\Order\Models\Entities;
 
+use Database\Factories\OrderFactory;
 use Domain\Driver\Exceptions\DriverNotAvailableException;
 use Domain\Driver\Models\Entities\Driver;
 use Domain\Order\Enums\OrderStatus;
 use Domain\Order\Exceptions\OrderAlreadyAssignedException;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -77,5 +79,10 @@ class Order extends Model
         $this->driver_id = $driver->id;
         $this->status = OrderStatus::ASSIGNED;
         $this->assigned_at = now();
+    }
+
+    protected static function newFactory(): Factory
+    {
+        return OrderFactory::new();
     }
 }
