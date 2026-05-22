@@ -51,8 +51,8 @@ final class OrderFactory extends Factory
     {
         return $this->state(fn (array $attrs) => [
             'status' => OrderStatus::COMPLETED->value,
-            'driver_id' => $attrs['driver_id'] ?? Driver::factory()->busy(),
-            'assigned_at' => now()->subHours(2),
+            'driver_id' => $attrs['driver_id'] ?? Driver::factory()->available(),
+            'assigned_at' => now()->subHours(3),
         ]);
     }
 }

@@ -41,4 +41,19 @@ final class EloquentOrderRepository implements OrderRepositoryContract
                 page: $filters->page,
             );
     }
+
+    public function getAllOrders(OrderFiltersData $filters): LengthAwarePaginator
+    {
+        return Order::query()
+            ->with('driver')
+            ->when(
+                $filters->status,
+                fn ($query, OrderStatus $status) => $query->where('status', $status->value),
+            )
+            ->orderByDesc('created_at')
+            ->paginate(
+                perPage: $filters->perPage,
+                page: $filters->page,
+            );
+    }
 }

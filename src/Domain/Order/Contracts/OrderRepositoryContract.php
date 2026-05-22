@@ -26,4 +26,6 @@ interface OrderRepositoryContract
         int $driverId,
         OrderFiltersData $filters,
     ): LengthAwarePaginator;
+
+    public function getAllOrders(OrderFiltersData $filters): LengthAwarePaginator;
 }
