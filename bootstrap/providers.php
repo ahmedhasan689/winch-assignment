@@ -2,5 +2,6 @@
 
 return [
     App\Providers\AppServiceProvider::class,
-    App\Providers\RepositoryServiceProvider::class,
+    Domain\Order\Providers\OrderServiceProvider::class,
+    Domain\Driver\Providers\DriverServiceProvider::class
 ];
